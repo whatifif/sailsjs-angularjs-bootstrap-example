@@ -1,0 +1,56 @@
+       <div ng-controller="SailsSocketCtrl" class="container ng-scope">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                    <div ng-controller="TodoCtrl" class="panel panel-default ng-scope">
+                        <div class="panel-heading clearfix">
+                            <a ng-click="openModal(newTodo)" class="pull-right">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                            <h1 class="panel-title">Todo List</h1>
+                        </div>
+                        <ul class="list-group">
+                            <!-- ngRepeat: todo in todos track by $index -->
+                            <li ng-repeat="todo in todos track by $index" class="list-group-item ng-scope">
+                                <a ng-click="openModal(todo)" class="pull-right">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a ng-click="toggleCompleted(todo)">
+                                    <i ng-class="{ fa: true, 'fa-lg': true, 'fa-check-circle-o': todo.isComplete, 'fa-circle-o': !todo.isComplete }" class="fa fa-lg fa-circle-o">
+                                        
+                                    </i>
+                                </a> 
+                                <span ng-class="{ strikethru: todo.isComplete }" class="ng-binding">{{todo.title}}</span>
+                            </li>
+                            <!-- end ngRepeat: todo in todos track by $index -->
+                        </ul>
+                        <div class="panel-footer clearfix">
+                            <span class="pull-left">
+                                <strong class="ng-binding">{{remainingCount}} </strong>
+                                <ng-pluralize count="remainingCount" when="{ one: 'item left', other: 'items left' }">items left</ng-pluralize>
+                            </span>
+                            <button ng-click="clearCompletedTodos()" ng-show="remainingCount < todos.length" class="btn btn-default btn-xs pull-right ng-binding ng-hide">Clear completed ({{todos.length - remainingCount}})</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/ng-template" id="todoModalContent.html">
+            <div class="modal-header">
+            <h3 class="modal-title">
+            <span ng-show="todo.id">Edit</span>
+            <span ng-hide="todo.id">New</span> Todo
+            </h3>
+            </div>
+            <div class="modal-body">
+            <form role="form">
+            <div class="form-group">
+            <label for="todoTitle">Title</label>
+            <input type="text" id="todoTitle" placeholder="My todo item..." ng-model="todo.title" class="form-control">
+            </div>
+            </form>
+            </div>
+            <div class="modal-footer">
+            <button ng-click="cancel()" class="btn btn-default">Cancel</button>
+            <button ng-click="ok('delete')" ng-show="todo.id" class="btn btn-danger">Delete</button>
+            <button ng-click="ok('save')" class="btn btn-primary">Save</button></div>
+        </script>

@@ -1,0 +1,74 @@
+<div ng-controller="SailsSocketCtrl" class="container ng-scope">
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+            <div ng-controller="RestCtrl" class="panel panel-default ng-scope">
+                <div class="panel-heading clearfix">
+                    <h1 class="panel-title">REST API Examples</h1>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <h3 class="list-group-item-heading">Echo Test</h3>
+                        <p>
+                            <em class="text-muted"><code>post /echo</code> : Echos a message back to the client</em>
+                        </p>
+                        <div class="input-group">
+                            <input type="text" ng-model="echoText" ng-trim="true" class="form-control ng-pristine ng-valid">
+                            <div class="input-group-btn">
+                                <a ng-click="callEcho('socket')" ng-show="socketReady" class="btn btn-default">Socket</a>
+                                <a ng-click="callEcho('http')" class="btn btn-default">HTTP</a>
+                            </div>
+                        </div>
+                        <!-- ngRepeat: alert in echoTestAlerts -->
+                        <div class="margin-top-sm no-margin-bot alert ng-isolate-scope alert-success" ng-class="'alert-'+ (type || 'warning')" ng-repeat="alert in echoTestAlerts" type="alert.type" close="closeEchoAlert()">
+                            <button ng-show="closeable" type="button" class="close" ng-click="close()">×</button>
+                            <!--<div ng-transclude="">-->
+                            <div>
+                                <strong class="ng-scope ng-binding">{{ alert.httpOrSocket | uppercase }}[{{alert.status}}]:</strong>
+                                <br class="ng-scope">
+                                <span class="ng-scope ng-binding">{{ alert.msg | json }}</span>
+                                <div class="ng-scope">
+                                    <em class="small text-muted ng-binding">({{alert.timestamp.toLocaleTimeString()}})</em>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end ngRepeat: alert in echoTestAlerts -->
+                    </li>
+                    <li class="list-group-item">
+                        <h3 class="list-group-item-heading">Error Scenarios</h3>
+                        <!-- ngRepeat: scenario in errorScenarios -->
+                        <div ng-repeat="scenario in errorScenarios" class="ng-scope">
+                            <h4 class="margin-top-lg ng-binding">{{scenario.title}}</h4>
+                            <p>
+                                <em class="text-muted"><code class="ng-binding">{{scenario.method}} {{scenario.url}}</code></em>
+                            </p>
+                            <div class="btn-group">
+                                <a ng-click="callErrorScenario('socket', scenario)" ng-show="socketReady" class="btn btn-default">Socket</a><a ng-click="callErrorScenario('http', scenario)" class="btn btn-default">HTTP</a>
+                            </div>
+                            <!-- ngRepeat: alert in errorAlerts[scenario.key] -->
+                            <div class="margin-top-sm no-margin-bot alert ng-isolate-scope alert-success" 
+                                 ng-class="'alert-'+ (type || 'warning')" 
+                                 ng-repeat="alert in errorAlerts[scenario.key]" 
+                                 type="alert.type" close="closeErrorAlert(scenario.key)">
+                                <button ng-show="closeable" type="button" class="close" ng-click="close()">×</button>
+                                <!--<div ng-transclude="">-->
+                                <div>
+                                    <strong class="ng-scope ng-binding">{{ alert.httpOrSocket | uppercase }}[{{alert.status}}]:</strong>
+                                    <br class="ng-scope">
+                                    <span class="ng-scope ng-binding">
+                                        {{ alert.msg | json | limitTo:500 }}</span>
+                                    <div class="ng-scope">
+                                        <em class="small text-muted ng-binding">({{alert.timestamp.toLocaleTimeString()}})</em>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end ngRepeat: alert in errorAlerts[scenario.key] -->
+                        </div>
+                        <!-- end ngRepeat: scenario in errorScenarios -->
+                        
+                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
