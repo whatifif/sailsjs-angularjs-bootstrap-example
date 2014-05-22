@@ -1,3 +1,10 @@
+# This is ejs version of original 
+# https://github.com/cgmartin/sailsjs-angularjs-bootstrap-example.git 
+
+
+I made this because Sails's default template engine is 'ejs' not 'jade'. And for me, 'ejs' is easier to learn and understand than 'jade'. 
+---------------------------------------------------------------------------
+
 # sailsjs-angularjs-bootstrap-example #
 
 > A suite of examples written for Sails.js, AngularJS, and Twitter Bootstrap.
