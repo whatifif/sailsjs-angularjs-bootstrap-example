@@ -54,7 +54,9 @@ module.exports.views = {
   //
 
   // layout: false
-  layout: true
+  // layout: true
+  layout: "layout"
+
 
 
 

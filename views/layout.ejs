@@ -29,16 +29,16 @@
                     <ul class="nav navbar-nav">
                         <li><a href="/">Home</a></li>
                         <li><a href="/rest-examples">REST Calls</a></li>
-                        <li><a href="/pages">Page List</a></li>
+                        <!-- <li><a href="/pages">Page List</a></li> -->
                         <li><a href="/todos">Todo List</a></li>
-                        <li><a href="/links">Link List</a></li>
-                        <li><a href="/users">User List</a></li>
-                        <li><a href="/user/list">User List2</a></li>
-                        <li><a href="/docs">Doc List</a></li>
+                        <!-- <li><a href="/links">Link List</a></li> -->
+                        <!-- <li><a href="/users">User List</a></li> -->
+                        <!-- <li><a href="/user/list">User List2</a></li> -->
+                        <!-- <li><a href="/docs">Doc List</a></li> -->
                         <li><a href="/protected">Passport Auth Login</a></li>
                         <% if(!req.user){ %> 
                         <li><a href="/login">Login</a></li>
-                        <li><a href="/user/register">Register</a></li>
+                        <!-- <li><a href="/user/register">Register</a></li> -->
                         <% }else{ %>
                         <li><a href="/<%= req.user.username %>"><span class="label label-success"><%=req.user.username%></span></a></li>
                         <li><a href="/logout">Logout</a></li>
